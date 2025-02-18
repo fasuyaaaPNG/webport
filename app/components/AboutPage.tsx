@@ -1,6 +1,5 @@
 import React from 'react';
 import { Chivo_Mono } from 'next/font/google';
-import Image from 'next/image';
 
 const chivoMono = Chivo_Mono({
   weight: ['100', '300', '400', '500', '700'], 
