@@ -24,7 +24,6 @@ export default function Home() {
     const pages: Record<'about' | 'skill' | 'project' | 'tools' | 'certificates', React.JSX.Element> = {
       about: <AboutPage />,
       skill: (
-        // Tambahkan animasi khusus untuk halaman Skill
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
