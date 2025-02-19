@@ -172,7 +172,7 @@ export default function Home() {
           alt="Footer Background"
           width={218}
           height={261}
-          className="absolute bottom-0 xl:w-[268px] xl:-[298px]"
+          className="z-[-1] absolute bottom-0 xl:w-[268px] xl:-[298px]"
         />
       </div>
     </>
