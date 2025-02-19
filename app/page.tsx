@@ -15,13 +15,16 @@ const chivoMono = Chivo_Mono({
   display: 'swap',
 });
 
+// Definisikan tipe untuk key halaman
+type PageKey = 'about' | 'skill' | 'project' | 'tools' | 'certificates';
+
 export default function Home() {
-  // Hanya mendefinisikan state sekali
-  const [activePage, setActivePage] = useState<'about' | 'skill' | 'project' | 'tools' | 'certificates'>('about');
+  // Hanya mendefinisikan state sekali dengan tipe khusus
+  const [activePage, setActivePage] = useState<PageKey>('about');
 
   // Fungsi untuk merender halaman dengan animasi transisi
   const renderPage = () => {
-    const pages: Record<'about' | 'skill' | 'project' | 'tools' | 'certificates', React.JSX.Element> = {
+    const pages: Record<PageKey, React.JSX.Element> = {
       about: <AboutPage />,
       skill: (
         <motion.div
@@ -53,18 +56,57 @@ export default function Home() {
     );
   };
 
+  // Definisikan array navigasi dengan tipe khusus untuk key
+  const navItems: { name: string; key: PageKey }[] = [
+    { name: "About Me 0_o?", key: "about" },
+    { name: "My Skill (｡- .•)?", key: "skill" },
+    { name: "My Project (¬_¬)?", key: "project" },
+    { name: "Tools I Use ( •̀ - •́ )?", key: "tools" },
+    { name: "Certificates✰", key: "certificates" }
+  ];
+
   return (
     <> 
       <div id="headerWrapper">
         <div className="absolute h-[123px] w-full flex justify-between">
           <div className="kiri flex">
-            <Image src="/header/lt1.png" alt="Header Left 1" width={207} height={115} className="h-[115px] w-[207px]" />
-            <Image src="/header/lt2.png" alt="Header Left 2" width={139} height={86} className="h-[86px] w-[139px] relative right-[40px]" />
+            <Image 
+              src="/header/lt1.png" 
+              alt="Header Left 1" 
+              width={207} 
+              height={115} 
+              className="h-[115px] w-[207px]" 
+            />
+            <Image 
+              src="/header/lt2.png" 
+              alt="Header Left 2" 
+              width={139} 
+              height={86} 
+              className="h-[86px] w-[139px] relative right-[40px]" 
+            />
           </div>
           <div className="kanan flex flex-row-reverse">
-            <Image src="/header/rt1.png" alt="Header Right 1" width={50} height={47} className="h-[47px] w-[50px]" />
-            <Image src="/header/rt2.png" alt="Header Right 2" width={156} height={83} className="h-[83px] w-[156px] relative left-[50px]" />
-            <Image src="/header/rt3.png" alt="Header Right 3" width={218} height={123} className="h-[123px] w-[218px] relative left-[190px]" />
+            <Image 
+              src="/header/rt1.png" 
+              alt="Header Right 1" 
+              width={50} 
+              height={47} 
+              className="h-[47px] w-[50px]" 
+            />
+            <Image 
+              src="/header/rt2.png" 
+              alt="Header Right 2" 
+              width={156} 
+              height={83} 
+              className="h-[83px] w-[156px] relative left-[50px]" 
+            />
+            <Image 
+              src="/header/rt3.png" 
+              alt="Header Right 3" 
+              width={218} 
+              height={123} 
+              className="h-[123px] w-[218px] relative left-[190px]" 
+            />
           </div>
         </div>
         
@@ -101,14 +143,9 @@ export default function Home() {
 
         <hr className="bg-[#624D74] border-[#624D74] w-full mt-[28px]" />
 
+        {/* Navigation Bar dengan Animasi */}
         <div id="nav" className={`${chivoMono.className} font-normal text-[12px] xl:text-[14px] w-[784px] xl:w-[920px] flex justify-between ml-auto mr-auto mt-[23px] items-center`}>
-          {[
-            { name: "About Me 0_o?", key: "about" },
-            { name: "My Skill (｡- .•)?", key: "skill" },
-            { name: "My Project (¬_¬)?", key: "project" },
-            { name: "Tools I Use ( •̀ - •́ )?", key: "tools" },
-            { name: "Certificates✰", key: "certificates" }
-          ].map((item) => (
+          {navItems.map((item) => (
             <motion.a
               key={item.key}
               className={`hover:cursor-pointer p-[10px] rounded-[100px] transition-all duration-300 ${
