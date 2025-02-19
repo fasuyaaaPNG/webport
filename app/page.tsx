@@ -153,7 +153,8 @@ export default function Home() {
                   ? "text-[#000000] text-[16px] xl:text-[18px] border border-[#624D74]"
                   : "text-gray-400 hover:text-[#000000]"
               }`}
-              onClick={() => setActivePage(item.key)}
+              // Casting item.key ke PageKey agar sesuai dengan tipe state
+              onClick={() => setActivePage(item.key as PageKey)}
               whileHover={{ scale: 1.05 }}
             >
               {item.name}
